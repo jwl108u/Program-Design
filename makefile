@@ -1,28 +1,13 @@
-all: GenerateRandomInt GenerateRandomStr QuickSortInt QuickSortStr MergeSortInt MergeSortStr HeapSortInt HeapSortStr
+SHELL = /bin/bash
+CC = gcc
+CFLAGS = -g
+SRC = $(wildcard *.c)
+EXE = $(patsubst %.c, %, $(SRC))
 
-GenerateRandomInt: GenerateRandomInt.c
-	gcc GenerateRandomInt.c -o GenerateRandomInt
+all: ${EXE}
 
-GenerateRandomStr: GenerateRandomStr.c
-	gcc GenerateRandomStr.c -o GenerateRandomStr
-
-QuickSortInt: QuickSortInt.c
-	gcc QuickSortInt.c -o QuickSortInt
-
-QuickSortStr: QuickSortStr.c
-	gcc QuickSortStr.c -o QuickSortStr
-
-MergeSortInt: MergeSortInt.c
-	gcc MergeSortInt.c -o MergeSortInt
-
-MergeSortStr: MergeSortStr.c
-	gcc MergeSortStr.c -o MergeSortStr
-
-HeapSortInt: HeapSortInt.c
-	gcc HeapSortInt.c -o HeapSortInt
-
-HeapSortStr: HeapSortStr.c
-	gcc HeapSortStr.c -o HeapSortStr
+%:	%.c
+	${CC} ${CFLAGS} $@.c -o $@
 
 clean:
-	rm GenerateRandomInt GenerateRandomStr QuickSortInt QuickSortStr MergeSortInt MergeSortStr HeapSortInt HeapSortStr
+	rm ${EXE}
