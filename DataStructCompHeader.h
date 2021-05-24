@@ -16,7 +16,7 @@ void SearchArr(int *, int , int );
 void Arr(int *, int *, int , int );
 
 struct listnode *InsertLL(struct listnode *, int );
-struct listnode *SearchLL(struct listnode *, int );
+void SearchLL(struct listnode *, int );
 void FreeList(struct listnode *);
 void LL(int *, int *, int , int );
 

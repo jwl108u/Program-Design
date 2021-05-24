@@ -346,27 +346,15 @@ void Arr(int *data, int *sdata, int nsize, int msize){
 
 struct listnode *InsertLL(struct listnode *head, int key){
 
-    struct listnode *cur;
     struct listnode *newnode = malloc(sizeof(struct listnode));
     newnode -> key = key;
-    newnode -> next = NULL;
+    newnode -> next = head;
 
-    if(head == NULL){
-        return newnode;
-    }
-
-    cur = head;
-
-    while(cur -> next){
-        cur = cur -> next;
-    }
-
-    cur -> next = newnode;
-    return head;
+    return newnode;
 
 }
 
-struct listnode *SearchLL(struct listnode *head, int key){
+void SearchLL(struct listnode *head, int key){
 
     struct listnode *cur;
 
@@ -374,14 +362,14 @@ struct listnode *SearchLL(struct listnode *head, int key){
 
     while(cur){
         if(cur -> key == key){
-            return cur;
+            return;
         }
         else{
             cur = cur -> next;
         }
     }
 
-    return NULL;
+    return;
 }
 
 void FreeList(struct listnode *head){
@@ -406,7 +394,6 @@ void LL(int *data, int *sdata, int nsize, int msize){
     unsigned  long diffSearch;
     int i;
     struct listnode *head = NULL;
-    struct listnode *node = NULL;
 
     //LL title
     printf("LL:\n");
@@ -423,7 +410,7 @@ void LL(int *data, int *sdata, int nsize, int msize){
     //LL searching time
     gettimeofday(&startSearch,NULL);
     for(i = 0; i < msize; i++){
-        node = SearchLL(head, sdata[i]);
+        SearchLL(head, sdata[i]);
     }
     gettimeofday(&endSearch,NULL);
     diffSearch = 1000000 * (endSearch.tv_sec-startSearch.tv_sec)+ endSearch.tv_usec-startSearch.tv_usec;
